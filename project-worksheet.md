@@ -131,9 +131,13 @@ Based on the initial logic defined in the previous game phases section try and b
 
 * Display Landing Page
 
+* Initialize game state
+
 * Display gameboard
 
 * Update gameboard
+
+* Get/Display/update puzzle
 
 * Player Turn Logic
     * who goes first
@@ -143,7 +147,12 @@ Based on the initial logic defined in the previous game phases section try and b
     * Turn Part A: Player clicks/spins to get turn value; player makes guess
     * Turn Part B: player guesses entire puzzle
 
+* Handle guess - level 1 - single-letter guess
+
+* Handle guess - level-2 - solve-the-puzzle guess
+
 * Determine player state post PART-A
+    * ==> WIN-GAME - GAME OVER
     * ==> PART-A-WIN - repeat Part A OR go on to PART B.
     * ==> PART-A-LOSE - next Player's turn
 
@@ -157,10 +166,6 @@ Based on the initial logic defined in the previous game phases section try and b
 * Determine letter status (remove guessed letters from available-letters pool, check for available letters.)
 
 * Get Turn Value
-
-* Get Puzzle
-
-* Update Puzzle
 
 * Game Reset
 
