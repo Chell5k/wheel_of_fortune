@@ -95,13 +95,12 @@ Include the full list of features that will be part of your MVP
 
 1. Reset button
 
-1. "Level-1" puzzle logic:
-    1. Functionality to handle letter guesses, for example:
-      1. Accept consonant guesses only - reject vowel guesses
-      1. Reveal successful guesses on gameboard
-      1. Track used letters - is this visible on tv show?
+1. "Level-1" puzzle logic - functionality to handle letter guesses, for example:
+    1. Accept consonant guesses only - reject vowel guesses
+    1. Reveal successful guesses on gameboard
+    1. Track used letters - is this visible on tv show?
     1. Easier puzzle list (i.e., more letters are revealed up front)
-1. Turn logic - exclude puzzle guesses for now?
+1. Player Turn logic - exclude puzzle guesses for now?
 1. Puzzle list (short, easier)
 1. Turn value selection (easier; non randomized)
 1. Puzzle selection (easier; non randomized)
@@ -112,12 +111,12 @@ Include the full list of features that you are considering for POST MVP
 ## Functional Components
 
 1. "Level-2" puzzle logic -
-    buying vowels
-    guessing the puzzle
-    Turn logic - include puzzle guesses
+    1. buying vowels
+    1. guessing the puzzle
+    1. Turn logic - include puzzle guesses
 1.  Turn value selection - enhanced
-      losing turn
-      wipeout of points
+    1. losing turn
+    1. wipeout of points
 1.  Longer list of puzzles. Harder puzzles?
 1. spinning wheel which selects turn value.
 1. Sound effects
@@ -127,17 +126,17 @@ Based on the initial logic defined in the previous game phases section try and b
 
 Determine which player goes first.
 Player executes a turn. (Each turn has a mandatory part A, the letter guess, and an optional part B, the word/phrase guess.)
-  Turn Part A: Player spins wheel; player x makes guess
-  Check remaining letters
-  Check Player's status:
-    GAME-WIN - GAME OVER
-    PART-A-WIN - repeat Part A or go on to PART B.
-    PART-A-LOSE - next Player's turn
+* Turn Part A: Player spins wheel; player x makes guess
+    * Check remaining letters
+    * Check Player's status:
+    * GAME-WIN - GAME OVER
+    * PART-A-WIN - repeat Part A or go on to PART B.
+    * PART-A-LOSE - next Player's turn
 
-  Turn Part B: Player guesses word/phrase
-  Check Player's status
-    GAME-WIN - GAME OVER
-    PART-B-LOSE - next player's turn
+* Turn Part B: Player guesses word/phrase
+    * Check Player's status
+    * GAME-WIN - GAME OVER
+    * PART-B-LOSE - next player's turn
 
 Time frames are also key in the development cycle.  You have limited time to code all phases of the game.  Your estimates can then be used to evalute game possibilities based on time needed and the actual time you have before game must be submitted.
 
