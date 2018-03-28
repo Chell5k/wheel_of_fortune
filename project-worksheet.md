@@ -93,32 +93,33 @@ There will be a game-reset button on the board, after the game has ended.
 
 Include the full list of features that will be part of your MVP
 1. Landing page with welcome message, player entry form, button to continue to game
-1. Game board with
-  1. player's names
-  1. scoreboard
-  1. presentation of puzzle
-  1. input area to enter guesses
-  1. wheel-shaped turn value button (instead of spinning wheel)
-  1. short list of puzzles
-1. "Level-1" Reset button
-1. "Level-1" Guess logic - functionality to handle letter guesses, for example:
+1. Game board with:
+    1. player's names
+    1. scoreboard
+    1. presentation of puzzle
+    1. input area to enter single-letter guesses
+    1. wheel-shaped turn value button (instead of spinning wheel)
+    1. short list of puzzles
+1. "Level-1" Reset button - shows up at the end of a game
+1. "Level-1" Guess logic - functionality to handle single-letter guesses, for example:
     1. Accept consonant guesses only - reject vowel guesses
     1. Reveal successful guesses on gameboard
     1. Track used letters - is this visible on tv show?
-1. "Level-l" Player Turn logic - exclude solve-the-puzzle guesses for now?
+1. "Level-l" Player Turn logic - exclude "solve-the-puzzle" guesses
 1. "Level-1" Puzzle list (short, easier, more letters revealed at the start)
-1. "Level-1" Turn value selection (easier; non randomized)
 1. Puzzle selection (easier; non randomized)
+1. "Level-1" Turn value selection (easier; non randomized)
 
 ## POST MVP
 
 Include the full list of features that you are considering for POST MVP
 ## Functional Components
 
+1. "Level-2" gameboard - upgraded to accept a solve-the-puzzle guess.
 1. "Level-2" guess logic -
     1. buying vowels
     1. guessing the puzzle
-1. "Level-2" Player Turn logic - include guess-the-puzzle portion of a turn
+1. "Level-2" Player Turn logic - include solve-the-puzzle guesses
 1. "Level-2" Turn value selection - enhanced
     1. losing turn
     1. wipeout of points
@@ -131,17 +132,19 @@ Based on the initial logic defined in the previous game phases section try and b
 
 Determine which player goes first.
 Player executes a turn. (Each turn has a mandatory part A, the letter guess, and an optional part B, the word/phrase guess.)
-* Turn Part A: Player spins wheel; player x makes guess
-    * Check remaining letters
+* Turn Part A: Player spins wheel; player makes guess
+    * Check for remaining letters
     * Check Player's status:
-    * GAME-WIN - GAME OVER
-    * PART-A-WIN - repeat Part A or go on to PART B.
-    * PART-A-LOSE - next Player's turn
+    * => WIN-GAME - GAME OVER
+    * => PART-A-WIN - repeat Part A or go on to PART B.
+    * => PART-A-LOSE - next Player's turn
 
 * Turn Part B: Player guesses word/phrase
     * Check Player's status
-    * GAME-WIN - GAME OVER
-    * PART-B-LOSE - next player's turn
+    * => WIN-GAME - GAME OVER
+    * => PART-B-LOSE - next player's turn
+
+* Game Reset
 
 Time frames are also key in the development cycle.  You have limited time to code all phases of the game.  Your estimates can then be used to evalute game possibilities based on time needed and the actual time you have before game must be submitted.
 
