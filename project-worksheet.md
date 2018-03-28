@@ -92,17 +92,14 @@ Include the full list of features that will be part of your MVP
   1. input area to enter guesses
   1. wheel-shaped turn value button (instead of spinning wheel)
   1. short list of puzzles
-
-1. Reset button
-
-1. "Level-1" puzzle logic - functionality to handle letter guesses, for example:
+1. "Level-1" Reset button
+1. "Level-1" Guess logic - functionality to handle letter guesses, for example:
     1. Accept consonant guesses only - reject vowel guesses
     1. Reveal successful guesses on gameboard
     1. Track used letters - is this visible on tv show?
-    1. Easier puzzle list (i.e., more letters are revealed up front)
-1. Player Turn logic - exclude puzzle guesses for now?
-1. Puzzle list (short, easier)
-1. Turn value selection (easier; non randomized)
+1. "Level-l" Player Turn logic - exclude solve-the-puzzle guesses for now?
+1. "Level-1" Puzzle list (short, easier, more letters revealed at the start)
+1. "Level-1" Turn value selection (easier; non randomized)
 1. Puzzle selection (easier; non randomized)
 
 ## POST MVP
@@ -110,17 +107,17 @@ Include the full list of features that will be part of your MVP
 Include the full list of features that you are considering for POST MVP
 ## Functional Components
 
-1. "Level-2" puzzle logic -
+1. "Level-2" guess logic -
     1. buying vowels
     1. guessing the puzzle
-    1. Turn logic - include puzzle guesses
-1.  Turn value selection - enhanced
+1. "Level-2" Player Turn logic - include guess-the-puzzle portion of a turn
+1. "Level-2" Turn value selection - enhanced
     1. losing turn
     1. wipeout of points
-1.  Longer list of puzzles. Harder puzzles?
+1.  "Level-2" puzzles - Longer list of puzzles. Harder puzzles?
 1. spinning wheel which selects turn value.
 1. Sound effects
-1. reset button works during the game, not just the end (in case players want to start a new game without finishing the old game)
+1. "Level-2" reset button - works during the game, not just the end (in case players want to start a new game without finishing the old game)
 
 Based on the initial logic defined in the previous game phases section try and breakdown the logic further into functional components, and by that we mean functions.  Does your logic indicate that code could be encapsulated for the purpose of reusablility.  Once a function has been defined it can then be incorporated into a class as a method.
 
@@ -141,9 +138,14 @@ Player executes a turn. (Each turn has a mandatory part A, the letter guess, and
 Time frames are also key in the development cycle.  You have limited time to code all phases of the game.  Your estimates can then be used to evalute game possibilities based on time needed and the actual time you have before game must be submitted.
 
 | Component | Priority | Estimated Time | Time Invested | Actual Time |
-| --- | :---: |  :---: | :---: | :---: |
-| Component 1 | H | 10hrs| 12hrs | 12hrs |
-| Total |  | 10hrs| 12hrs | 12hrs |
+| Landing Page | High |  4 hrs| :---: | :---: |
+| Game Board  | High | 12hrs| :---: | :---: |
+| L1 Reset  | High | 4hrs| :---: | :---: |
+| L1 Guess Logic  | High | 4hrs| :---: | :---: |
+| L1 Turn Logic | High | 4hrs| :---: | :---: |
+| L1 Puzzle logic | High | 4hrs| :---: | :---: |
+| L1 Turn value selection | High | 12hrs| :---: | :---: |
+| Total |  | 44hrs| :---: | :---: |
 
 ## Helper Functions
 Helper functions should be generic enought that they can be reused in other applications. Use this section to document all helper functions that fall into this category.
