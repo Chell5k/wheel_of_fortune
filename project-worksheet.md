@@ -97,17 +97,16 @@ Include the full list of features that will be part of your MVP
     1. player's names
     1. scoreboard
     1. presentation of puzzle
-    1. input area to enter single-letter guesses
-    1. wheel-shaped turn value button (instead of spinning wheel)
-    1. short list of puzzles
+    1. input area for enter single-letter guesses
+    1. turn-value button (instead of spinning wheel) - player clicks to get his/her value for current turn
 1. "Level-1" Reset button - shows up at the end of a game
 1. "Level-1" Guess logic - functionality to handle single-letter guesses, for example:
-    1. Accept consonant guesses only - reject vowel guesses
+    1. Accept consonant guesses only, vowels provided (reject vowel guesses)
     1. Reveal successful guesses on gameboard
     1. Track used letters - is this visible on tv show?
-1. "Level-l" Player Turn logic - exclude "solve-the-puzzle" guesses
+1. "Level-l" Player Turn logic - figure out who goes next. Exclude "solve-the-puzzle" guesses
 1. "Level-1" Puzzle list (short, easier, more letters revealed at the start)
-1. Puzzle selection (easier; non randomized)
+1. "Level-1" Puzzle selection (easier; non randomized)
 1. "Level-1" Turn value selection (easier; non randomized)
 
 ## POST MVP
@@ -116,7 +115,7 @@ Include the full list of features that you are considering for POST MVP
 ## Functional Components
 
 1. "Level-2" gameboard - upgraded to accept a solve-the-puzzle guess.
-1. "Level-2" guess logic -
+1. "Level-2" guess logic - handle
     1. buying vowels
     1. guessing the puzzle
 1. "Level-2" Player Turn logic - include solve-the-puzzle guesses
@@ -124,25 +123,44 @@ Include the full list of features that you are considering for POST MVP
     1. losing turn
     1. wipeout of points
 1.  "Level-2" puzzles - Longer list of puzzles. Harder puzzles?
-1. spinning wheel which selects turn value.
+1. Replace turn-value button with spinning wheel which selects turn value.
 1. Sound effects
 1. "Level-2" reset button - works during the game, not just the end (in case players want to start a new game without finishing the old game)
 
 Based on the initial logic defined in the previous game phases section try and breakdown the logic further into functional components, and by that we mean functions.  Does your logic indicate that code could be encapsulated for the purpose of reusablility.  Once a function has been defined it can then be incorporated into a class as a method.
 
-Determine which player goes first.
-Player executes a turn. (Each turn has a mandatory part A, the letter guess, and an optional part B, the word/phrase guess.)
-* Turn Part A: Player spins wheel; player makes guess
-    * Check for remaining letters
-    * Check Player's status:
-    * => WIN-GAME - GAME OVER
-    * => PART-A-WIN - repeat Part A or go on to PART B.
-    * => PART-A-LOSE - next Player's turn
+* Display Landing Page
 
-* Turn Part B: Player guesses word/phrase
-    * Check Player's status
+* Display gameboard
+
+* Update gameboard
+
+* Player Turn Logic
+    * who goes first
+    * figure out what constitues the end of current player's turn
+
+* Player Executes Turn. (Each turn has a mandatory part A, the letter guess, and an optional part B, the word/phrase guess.)
+    * Turn Part A: Player clicks/spins to get turn value; player makes guess
+    * Turn Part B: player guesses entire puzzle
+
+* Determine player state post PART-A
+    * ==> PART-A-WIN - repeat Part A OR go on to PART B.
+    * ==> PART-A-LOSE - next Player's turn
+
+* Determine player state post PART-B
     * => WIN-GAME - GAME OVER
     * => PART-B-LOSE - next player's turn
+
+* Determine game state
+    * ==> GAME-OVER, GAME-IN-PROGRESS
+
+* Determine letter status (remove guessed letters from available-letters pool, check for available letters.)
+
+* Get Turn Value
+
+* Get Puzzle
+
+* Update Puzzle
 
 * Game Reset
 
