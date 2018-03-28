@@ -137,15 +137,11 @@ Player executes a turn. (Each turn has a mandatory part A, the letter guess, and
 
 Time frames are also key in the development cycle.  You have limited time to code all phases of the game.  Your estimates can then be used to evalute game possibilities based on time needed and the actual time you have before game must be submitted.
 
-| Component | Priority | Estimated Time | Time Invested | Actual Time |
-| Landing Page | High |  4 hrs| :---: | :---: |
-| Game Board  | High | 12hrs| :---: | :---: |
-| L1 Reset  | High | 4hrs| :---: | :---: |
-| L1 Guess Logic  | High | 4hrs| :---: | :---: |
-| L1 Turn Logic | High | 4hrs| :---: | :---: |
-| L1 Puzzle logic | High | 4hrs| :---: | :---: |
-| L1 Turn value selection | High | 12hrs| :---: | :---: |
-| Total |  | 44hrs| :---: | :---: |
+| Component | Priority | Estimated Time | Time Invetsted | Actual Time |
+| --- | :---: |  :---: | :---: | :---: |
+| Component 1 | H | 10hrs| 12hrs | 12hrs |
+| Total |  | 10hrs| 12hrs | 12hrs |
+
 
 ## Helper Functions
 Helper functions should be generic enought that they can be reused in other applications. Use this section to document all helper functions that fall into this category.
