@@ -25,7 +25,12 @@ I am implementing a version of Wheel of Fortune, beloved by word puzzle enthusia
 
 Include images of your wireframes.
 
+![Wireframes](jpg/wireframes.JPG?raw=true "Wireframes")
+Wireframe image is in jpg/wireframes.JPG
+
 ## Priority Matrix
+![Wireframes](jpg/prioritymatrix.JPG?raw=true "Priority Matrix")
+Priority matrix is in jpg/prioritymatrix.JPG
 
 Include a full list of features that have been prioritized based on the `Time and Importance` Matix.
 
