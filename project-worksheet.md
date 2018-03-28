@@ -139,7 +139,13 @@ Time frames are also key in the development cycle.  You have limited time to cod
 
 | Component | Priority | Estimated Time | Time Invetsted | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
-| Component 1 | H | 10hrs| 12hrs | 12hrs |
+| Landing Page | H | 4hrs|  |  |
+| Gameboard | H | 12hrs|  |  |
+| Reset 1 | H | 4hrs|  |  |
+| L1 Guess Logic | H | 4hrs|  |  |
+| L1 Turn logic | H | 4hrs|  |  |
+| L1 Puzzle logic | H | 2rs|  |  |
+| L1 Turn valuation | H | 2hrs|  |  |
 | Total |  | 10hrs| 12hrs | 12hrs |
 
 
