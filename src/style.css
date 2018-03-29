@@ -1,0 +1,107 @@
+body {
+  font-family: arial;
+  /*background: black;*/
+}
+
+/*.landing_page {
+  top:80px;
+  width: 600px;
+  height: 400px;
+  margin: 0 auto;
+  border: 2px solid white;
+  border: 2px solid black;
+  position: relative;
+  background: white;
+}
+*/
+.landing_banner {
+  /*top: 50px;*/
+  width: 600px;
+  height: 110px;
+  margin: 30px auto;
+  /*border: 2px solid black;*/
+  background: lightblue;
+  position: relative;
+}
+
+.landing_banner * {
+  /*Intended to affect the headers*/
+  position: relative;
+  top: 8px;
+  color: white;
+  text-align: center;
+  margin: 10px;
+  /*border: 2px solid black;*/
+ /*position: relative;*/
+}
+
+img.the_wheel {
+
+  top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 15%;
+  display: block;
+  /*border: 2px solid black;*/
+}
+
+div.landing_notification {
+
+ /*top: 300px;*/
+  width: 600px;
+  height: 50px;
+  margin: 30px auto;
+  /*border: 2px solid grey;*/
+  background: lightgrey;
+  position: relative;
+
+}
+div.landing_notification * {
+  /*Intended to affect the headers*/
+  position: relative;
+  top: 8px;
+  color: white;
+  text-align: center;
+  margin: 10px;
+ /* border: 2px solid black;*/
+ /*position: relative;*/
+}
+div.landing_enter_names {
+
+ /*top: 300px;*/
+  width: 600px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  /*border: 2px solid grey;*/
+  background: lightgrey;
+  position: relative;
+
+}
+
+div.landing_enter_names input {
+  position: relative;
+  color: grey;
+  top: 10px;
+  display: block;
+  padding: 5px;
+  margin: 10px 5px;
+}
+
+div.landing_start_button {
+  position: relative;
+  width: 600px;
+  height: 40px;
+  color: grey;
+  background: lightgrey;
+  /*border: 2px solid black;*/
+  /*top: 10px;*/
+  padding: 5px;
+  margin: 10px auto;
+}
+
+button {
+ margin: 0 auto;
+ display: block;
+ margin: 0 auto;
+}

@@ -2,10 +2,10 @@
 
 ## Project Schedule
 
-This schedule will be used to keep track of your progress throughout the week and align with our expectations.
+This schedule will be used to keep track of your progress throughout the week and align with our expectations.  
 
-|  Day | Deliverable |
-|---|---|
+|  Day | Deliverable | 
+|---|---| 
 |Day 1: Tue| Wireframes and Priority Matrix|
 |Day 2: Wed| Project Approval /  Pseudocode / actual code|
 |Day 3: Thur| Basic Clickable Model |
@@ -19,194 +19,74 @@ This schedule will be used to keep track of your progress throughout the week an
 
 Use this section to describe your final project and perhaps any links to relevant sites that help convey the concept and\or functionality.
 
-I am implementing a version of Wheel of Fortune, beloved by word puzzle enthusiasts of all ages. In this game, players take turns guessing the letters that are missing from a well known word or phrase. The first player to successfully guess the word or phrase wins the game.
-
 ## Wireframes
 
-Include images of your wireframes.
-
-![Wireframes](jpg/wireframes.JPG?raw=true "Wireframes")
-
-Wireframe image is in jpg/wireframes.JPG
+Include images of your wireframes. 
 
 ## Priority Matrix
 
-![Wireframes](jpg/prioritymatrix.JPG?raw=true "Priority Matrix")
-
-Priority matrix is in jpg/prioritymatrix.JPG
-
-Include a full list of features that have been prioritized based on the `Time and Importance` Matix.
+Include a full list of features that have been prioritized based on the `Time and Importance` Matix.  
 
 ## Game Components
 
 ### Landing Page
 What will a player see when they start your game?
-1. "Welcome" message
-1. Fom to collect players' names
-1. Button to continue to game
+- Welcome page that asks for players' name
+- 
 
 ### Game Initialization
-What will a player see when the game is started?
-1. Presentation of the word puzzle:
-  Attractive Letters and punctuation - some of the letters will be blocked out
-1. Player names and current scores
-1. Button for obtaining point values
-1. Optional form for entering the puzzle's solution
-1. Notification area - indicates whose turn it is, status of turn, status of game.
-
+What will a player see when the game is started? 
 
 ### Playing The Game
-What will be the flow of the game, what will the user be expected to do and what will the user expect from the game
-
-The game is played by two players, who will enter their names on the game's landing page.
-
-The gameboard contains the players' names, scores,  a roulette-style "wheel", and a word or phrase with missing letters.
-
-Each player to take a turn, during which s/he spins the wheel for determine points for the round, then guesses a letter.
-
-If guessed correctly,
-  all letters in the word/phrase matching the guess are revealed;
-  The player accumulates points in his/her score, and can either
-    spin/guess again, or
-    try to guess the puzzle.
-Letters which are correctly guessed are removed from the game (not available for guesses)
-
-If the player guesses the wrong letter, or tries and fails to guess the puzzle, s/he loses the turn, and the other player gets a turn.
+What will be the flow of the game, what will the user be expeted to do and what will the user expect from the gam
 
 ### Winning The Game
 What does it look like when the game ends, what determines winning or losing?
 
-The winner is the first player for whom the following occurs during his/her turn:
-  No more letters remain to guess, or
-  s/he correctly guesses the puzzle.
-
-The game announces the winner prominently and suggests resetting to play another game.
-
-The points earned are kept by the winner, but the loser's score is wiped out.
-
 ### Game Reset
 How will the user restart the game once it has been completed.
 
-There will be a game-reset button on the board, after the game has ended.
+## MVP 
 
-## MVP
-
-Include the full list of features that will be part of your MVP
-1. Landing page with welcome message, player entry form, button to continue to game
-1. Game board with:
-    1. player's names
-    1. scoreboard
-    1. presentation of puzzle
-    1. input area for enter single-letter guesses
-    1. turn-value button (instead of spinning wheel) - player clicks to get his/her value for current turn
-1. "Level-1" Reset button - shows up at the end of a game
-1. "Level-1" Guess logic - functionality to handle single-letter guesses, for example:
-    1. Accept consonant guesses only, vowels provided (reject vowel guesses)
-    1. Reveal successful guesses on gameboard
-    1. Track used letters - is this visible on tv show?
-1. "Level-l" Player Turn logic - figure out who goes next. Exclude "solve-the-puzzle" guesses
-1. "Level-1" Puzzle list (short, easier, more letters revealed at the start)
-1. "Level-1" Puzzle selection (easier; non randomized)
-1. "Level-1" Turn value selection (easier; non randomized)
+Include the full list of features that will be part of your MVP 
 
 ## POST MVP
 
 Include the full list of features that you are considering for POST MVP
 ## Functional Components
 
-1. "Level-2" gameboard - upgraded to accept a solve-the-puzzle guess.
-1. "Level-2" guess logic - handle
-    1. buying vowels
-    1. guessing the puzzle
-1. "Level-2" Player Turn logic - include solve-the-puzzle guesses
-1. "Level-2" Turn value selection - enhanced
-    1. losing turn
-    1. wipeout of points
-1.  "Level-2" puzzles - Longer list of puzzles. Harder puzzles?
-1. Replace turn-value button with spinning wheel which selects turn value.
-1. Sound effects
-1. "Level-2" reset button - works during the game, not just the end (in case players want to start a new game without finishing the old game)
+Based on the initial logic defined in the previous game phases section try and breakdown the logic further into functional components, and by that we mean functions.  Does your logic indicate that code could be encapsulated for the purpose of reusablility.  Once a function has been defined it can then be incorporated into a class as a method. 
 
-Based on the initial logic defined in the previous game phases section try and breakdown the logic further into functional components, and by that we mean functions.  Does your logic indicate that code could be encapsulated for the purpose of reusablility.  Once a function has been defined it can then be incorporated into a class as a method.
-
-* Display Landing Page
-
-* Initialize game state
-
-* Display gameboard
-
-* Update gameboard
-
-* Get/Display/update puzzle
-
-* Player Turn Logic
-    * who goes first
-    * figure out what constitues the end of current player's turn
-
-* Player Executes Turn. (Each turn has a mandatory part A, the letter guess, and an optional part B, the word/phrase guess.)
-    * Turn Part A: Player clicks/spins to get turn value; player makes guess
-    * Turn Part B: player guesses entire puzzle
-
-* Handle guess - level 1 - single-letter guess
-
-* Handle guess - level-2 - solve-the-puzzle guess
-
-* Determine player state post PART-A
-    * ==> WIN-GAME - GAME OVER
-    * ==> PART-A-WIN - repeat Part A OR go on to PART B.
-    * ==> PART-A-LOSE - next Player's turn
-
-* Determine player state post PART-B
-    * => WIN-GAME - GAME OVER
-    * => PART-B-LOSE - next player's turn
-
-* Determine game state
-    * ==> GAME-OVER, GAME-IN-PROGRESS
-
-* Determine letter status (remove guessed letters from available-letters pool, check for available letters.)
-
-* Get Turn Value
-
-* Game Reset
-
-Time frames are also key in the development cycle.  You have limited time to code all phases of the game.  Your estimates can then be used to evalute game possibilities based on time needed and the actual time you have before game must be submitted.
+Time frames are also key in the development cycle.  You have limited time to code all phases of the game.  Your estimates can then be used to evalute game possibilities based on time needed and the actual time you have before game must be submitted. 
 
 | Component | Priority | Estimated Time | Time Invetsted | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
-| Landing Page | H | 4hrs|  |  |
-| Gameboard | H | 12hrs|  |  |
-| Reset 1 | H | 4hrs|  |  |
-| L1 Guess Logic | H | 4hrs|  |  |
-| L1 Turn logic | H | 4hrs|  |  |
-| L1 Puzzle logic | H | 2hs|  |  |
-| L1 Turn valuation | H | 2hrs|  |  |
-| Total |  | 42hrs|  |  |
-
-
+| Component 1 | H | 10hrs| 12hrs | 12hrs |
+| Total |  | 10hrs| 12hrs | 12hrs |
 
 ## Helper Functions
 Helper functions should be generic enought that they can be reused in other applications. Use this section to document all helper functions that fall into this category.
 
-| Function | Description |
-| --- | :---: |
-| Capitalize | This will capitalize the first letter in a string |
+| Function | Description | 
+| --- | :---: |  
+| Capitalize | This will capitalize the first letter in a string | 
 
 ## Additional Libraries
- Use this section to list all supporting libraries and thier role in the project.
+ Use this section to list all supporting libraries and thier role in the project. 
 
 ## Code Snippet
 
-Use this section to include a brief code snippet of functionality that you are proud of an a brief description.
+Use this section to include a brief code snippet of functionality that you are proud of an a brief description.  
 
 ## jQuery Discoveries
  Use this section to list some, but not all, of the jQuery methods and\or functionality discovered while working on this project.
 
 ## Change Log
- Use this section to document what changes were made and the reasoning behind those changes.
+ Use this section to document what changes were made and the reasoning behind those changes.  
 
 ## Issues and Resolutions
  Use this section to list of all major issues encountered and their resolution.
 
 #### SAMPLE.....
-**ERROR**: app.js:34 Uncaught SyntaxError: Unexpected identifier
+**ERROR**: app.js:34 Uncaught SyntaxError: Unexpected identifier                                
 **RESOLUTION**: Missing comma after first object in sources {} object
