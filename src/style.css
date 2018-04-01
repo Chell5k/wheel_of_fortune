@@ -4,7 +4,7 @@ body {
 }
 
 .landing_page {
-  top:80px;
+  /*top:80px;*/
   width: 600px;
   height: 600px;
   margin: 30px auto;
@@ -109,7 +109,7 @@ button {
 /********************************************************************************/
 
 .game_page {
-  top:80px;
+  /*top:80px;*/
   width: 600px;
   height: 600px;
   margin: 30px auto;
@@ -146,7 +146,7 @@ div.game_wheel_wrapper button {
  margin: 0 auto;
 }
 
-div.game_notification {
+div.game_update {
 
  /*top: 300px;*/
   width: 550px;
@@ -157,7 +157,7 @@ div.game_notification {
   position: relative;
 
 }
-div.game_notification * {
+div.game_update * {
   /*Intended to affect the headers*/
   position: relative;
   top: 8px;
@@ -166,5 +166,21 @@ div.game_notification * {
   margin: 10px;
  /* border: 2px solid black;*/
  /*position: relative;*/
+}
+
+/********************************************************************/
+
+ div.puzzle {
+  /*top: 300px;*/
+  /*border: 5px solid blue;*/
+  position: relative;
+  height: 30px;
+  display: inline-block;
+  text-align: center;
+  width: 40px;
+  margin: 30px auto;
+  background-color: white;
+}
+
 
 
