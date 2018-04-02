@@ -3,7 +3,7 @@
 /*******************************************************************/
 //used var variable assignment to give gameState a global scope
 var gameState = {
-  "players": [{"name": null, "score": 0},{"name": "null", score: 0}],
+  "players": [{"name": null, "score": 0},{"name": null, score: 0}],
   "game_number": 0,
   "round_number": 0, //this includes each turn, even if the same player when more than once
   "current_player": 0, //this is the index into the player array. 0=>first player.
@@ -12,10 +12,10 @@ var gameState = {
   "retry": null, // will be set to true or false after the current guess.
   "status": "initialized", /* running; win; reset; finished.*/
   updatePlayer: function (player, playerName) {
-    this["players"][player]["name"] = playerName;
+    gameState["players"][player]["name"] = playerName;
   },
   getPlayerName: function (player) {
-    return this["players"][player]["name"];
+    return gameState["players"][player]["name"];
   },
   getCurrentPlayer: function() {
     return this.current_player;
@@ -27,7 +27,7 @@ var gameState = {
     this.points = value;
   },
   updatePlayerScore: function(player, score) {
-    this[players][player][score] += score;
+    gameState[players][player][score] += score;
   },
   getState: function() {
     return this.status;
@@ -54,7 +54,7 @@ const puzzles = {
 "2": ["b","u","z","z","a","r","d"]
 };
 
-const letterInventory = {
+const letters = {
 'a':"active",
 'b':"active",
 'c':"active",
@@ -153,9 +153,9 @@ function updateGamePage(points, message, position) {
 //* shows the game page
 //* clears scores
 //* gets a new puzzle; resets the letter inventoru
-//function initializeGame (puzzles, letterInventory) {
+//function initializeGame (puzzles, letters) {
 
-//    return puzzleAndInventory;
+//    return puzzleAndLetters;
 //}
 /****************************************************************/
 
@@ -199,19 +199,24 @@ function spinWheel () {
 //   through all puzzles.
 //2. Synchs the puzzle to the letter inventory (puts the right starting
 //   status on each letter
-function getPuzzle( puzzles, letterInventory) {
+function runPuzzle() {
+  console.log('runPuzzle starting...');
+    getPuzzle();
+    fetchGuess();
+    checkGuess();
+  console.log('runPuzzle ending');
+}
+
+function getPuzzle() {
   console.log('getPuzzle starting...');
-  let currentPuzzle = puzzles["0"];
+  let puzzleMax=puzzles.length;
+  currentPuzzle = puzzles[puzzleCounter];
   console.log('Number of letters in currentPuzzle: ', currentPuzzle.length);
 
   for (let i = 0; i < currentPuzzle.length; i++) {
-   letterInventory[currentPuzzle[i]] = "in_puzzle";
+   letters[currentPuzzle[i]] = "in_puzzle";
   }
-
-  // console.log(currentPuzzle);
-  // console.log(letterInventory);
-
-  return {"puzzle": currentPuzzle, "inventory": letterInventory};
+  if (puzzleCounter === puzzleMax) {puzzleCounter = 0;}
   console.log('getPuzzle ending.');
 }
 //From Peter: example of targetting one individual div by unique classname
@@ -221,25 +226,27 @@ function getPuzzle( puzzles, letterInventory) {
 // getOneSquare();
 
   /**************************************************************/
-  function fetchGuess (puzzle, inventory) {
-    let guess = [];
+  function fetchGuess () {
+    console.log("fetchGuess: in...");
     //retrieve the guess and stuff it into the guess array...
     //for testing purposes, set it to a fixed value.
-    guess = ["r"];
-    return guess;
+    currentGuess = ["r"];
+    console.log("fetchGuess: out.");
   }
   /**************************************************************/
-  function checkGuess(puzzleAndInventory, currGuess) {
+  function checkGuess(puzzleAndLetters, currGuess) {
     console.log('checkGuess starting...');
 
-    let puzzle = puzzleAndInventory["puzzle"];
-    let inventory = puzzleAndInventory["inventory"];
-    let guess = currGuess[0];
+    //let puzzle = puzzleAndLetters["puzzle"];
+    //let letters = puzzleAndLetters["letters"];
+    let guess = currentGuess[0];
     let position = puzzle.indexOf(guess); // -1 => not in the puzzle. >= 0 means in the puzzle.
-    let old_status = inventory[guess]; // active, bad_guess, good_guess, in_puzzle, vowel.
+    let old_status = letters[guess]; // active, bad_guess, good_guess, in_puzzle, vowel.
     let new_status = old_status;
     let points;
     let retry; //boolean. Sometime the current person gets to go again.
+
+    debugger;
 
     // About the guess:
     // if it not in the puzzle and is a new guess (old_status is active, status becomes bad_guess.
@@ -250,7 +257,7 @@ function getPuzzle( puzzles, letterInventory) {
 
     if (position === -1) {
           new_status = 'bad_guess';
-          inventory[guess] = new_status;
+          letters[guess] = new_status;
           message = "Sorry - not in the puzzle";
           points = false;
           retry = false;
@@ -261,7 +268,7 @@ function getPuzzle( puzzles, letterInventory) {
         case "in_puzzle":
           message = "Good guess!"
           new_status = "good_guess";
-          inventory[guess] = new_status;
+          letters[guess] = new_status;
           points = true;
           retry = false;
         break;
@@ -290,108 +297,139 @@ function getPuzzle( puzzles, letterInventory) {
     gameState.updateAfterGuess(points, retry);
     updateGamePage(message, points, position);
     console.log(message);
-    console.log('puzzleAndInventory, currGuess, old_status, new_status, points, retry',
-                 puzzleAndInventory, currGuess, old_status, new_status, points, retry);
+    console.log('puzzleAndLetters, currGuess, old_status, new_status, points, retry',
+                 puzzleAndLetters, currGuess, old_status, new_status, points, retry);
     console.log('checkGuess finished.');
   }
 
-  /**************************************************************/
-//----------------------------------------------------------------//
-//----------------------------------------------------------------//
+// function checkForNames () {
+//   console.log('checkForNames: in');
+//  console.log('checkForNames: gamestate value:', gameState["players"][0]["name"]);
+//  if (gameState["players"][0]["name"]) {gotPlayer1 = true;}
+//  if (gameState["players"][1]["name"]) {gotPlayer2 = true;}
+//   if ((gotPlayer1) && (gotPlayer2)) {
+//     console.log('checkForNames: ok to proceed.')
+//     clearInterval(clearVal);
+//     showGamePage();
+//   }
+//   else {
+//     return;
+//   }
+//   console.log('checkForNames: out.');
+// }
+// function () {
 
-displayLandingPage();
-let puzzleAndInventory = {};
-let currGuess;
-let gotNames = false;
-let clearVal = null;
-/*Collect names*/
-//Ran into trouble retrieving names from text input boxes. Painful.
+//   console.log('newPuzzleCheck: starting');
+//   setInterval(checkforPuzzleCheck, 1000);
+//   console.log('newPuzzle: ending');
+// }
 
-
-function getNames () {
-  console.log('getNames: in');
-
-$('#name1').on('change', function(){
-  let $name = $(this).val();
-  console.log($name);
-  console.log('$name: ', $name);
-  gameState.updatePlayer(0, $name);
-  /*Update player name on gameboard*/
-  $('#player_1').html($name+":");
-});
-
-$('#name2').on('change', function(){
-  let $name = $(this).val();
-  console.log($name);
-  gameState.updatePlayer(1, $name);
-  $('#player_2').html($name+":");
-
-});
-
-  console.log('getNames: out');
-  return 1;
+function startGame () {
+console.log('startGame: in');
+$('.game_page').hide();
+readyPlayer1();
+readyPlayer2();
+console.log('startGame: gotPlayer1, gotPlayer2' , gotPlayer1, gotPlayer2);
+showGamePage();
+clearVal = setInterval(checkForNames, 1000);
+console.log('startGame: out. clearVal: ', clearVal);
+return 1;
 }
-
-gotNames = getNames();
-// $('#name1').on('change', function(){
-//   let $name = $(this).val();
-//   console.log($name);
-//   console.log('$name: ', $name);
-//   gameState.updatePlayer(0, $name);
-
-//   $('#player_1').html($name+":");
-// });
-
-// $('#name2').on('change', function(){
-//   let $name = $(this).val();
-//   console.log($name);
-//   gameState.updatePlayer(1, $name);
-//   $('#player_2').html($name+":");
-//   gotNames = true;
-// });
-
-let reset = true;
-let gameOn = true;
 
 function checkForNames () {
-  console.log('checkForNames: in');
-  if (!gotNames) {
-    console.log('checkForNames: gotNames is false');
-    return;
-  }
-  else {
-    console.log('checkForNames: gotNames is true. Here is where I will kick of remaining code. Self-clearing.');
+  console.log('checkForNames: in. clearVal: ', clearVal);
+  if (gotPlayer1 && gotPlayer2 ) {
+    console.log('checkForNames: ok to proceed.')
     clearInterval(clearVal);
-  }
-  console.log('checkForNames: out.');
-}
-clearVal = setInterval(checkForNames, 1000);
-
-while (reset) {
-  console.log('Top of reset loop...');
-  reset = false;
-  //puzzleAndInventory = initializeGame(puzzles, letterInventory);;
-  showGamePage();
- // Clear scores; reset letter inventory; get new puzzle
-  puzzleAndInventory = getPuzzle(puzzles, letterInventory);
-  console.log(puzzleAndInventory);
-  debugger; //call debugger right after calling getPuzzle. Examine puzzleAndInventory object
-//  displayPuzzle(puzzleAndInventory.puzzle);
-  while (gameOn) {
-    console.log('Top of gameOn loop...');
-    gameOn = false;
-    spinWheel();
-   currGuess = fetchGuess(puzzleAndInventory);
-   checkGuess(puzzleAndInventory, currGuess);
-//    gameOn = updateGameState(); //Update score, check the gameState for a win or a player requested exit.
+    runPuzzle();
+    //getPuzzle();
+    console.log('checkForNames: out.');
     }
-    /*Check gameState for reset value.*/
- //   if (reset == true) {
- //     initialize();
- }
+}
 
-debugger;
-console.log('ready function ending.');
+function readyPlayer1 () {
+console.log('readyPlayer1 in');
+$('#name1').on('change', function(){
+  console.log('in event handler for player1')
+  let $name = $(this).val();
+  console.log('rp1 ', $name);
+  gameState.updatePlayer(0, $name);
+  console.log('gameState name value: ', gameState["players"][0]["name"]);
+  //debugger;
+    console.log($name);
+  /*Update player name on gameboard*/
+  $('#player_1').html($name+":");
+  console.log('readyPlayer1 is set up');
+  gotPlayer1 = true;
+  return true;
+  });
+  console.log('readyPlayer1: we should never get here.');
+}
+
+function readyPlayer2 () {
+  console.log('readyPlayer2 in');
+  $('#name2').on('change', function(){
+  console.log('in event handler for player2')
+  let $name = $(this).val();
+  gameState.updatePlayer(1, $name);
+  console.log('gameState name value: ', gameState["players"][1]["name"]);
+  console.log($name);
+  $('#player_2').html($name+":");
+    console.log('readyPlayer2 is set up');
+  gotPlayer2 = true;
+  return true;
+  });
+  console.log('readyPlayer1: we should never get here.');
+}
+
+function showGamePage () {
+  console.log("showGamePage: in")
+$('#startbutton').on('click', function() {
+
+  $('.landing_page').fadeOut();
+  $('.game_page').fadeIn();
+  console.log("showGamePage: out");
+});
+}
+
+
+
+
+  /**************************************************************/
+//----------------------------------------------------------------//
+//STARTPROGRAM: Program starts here...
+//----------------------------------------------------------------//
+
+let currentPuzzle;
+let puzzleCounter = 0;
+let puzzleAndLetters = {};
+// These allow us to proceed to the game page.
+let gotPlayer1 = false;
+let gotPlayer2 = false;
+
+let showPuzzle = false; //flag
+let clearPuzzleCheck = null;
+
+let currentGuess = [];
+
+// let currGuess;
+// let gotNames = false;
+// let clearVal = null;
+
+//------------------------------------------------------------------//
+startGame();
+//Check if we are ready to get a new puzzle.
+//clearPuzzleCheck = setInterval(puzzleCheck, 1000);
+
+
+// puzzleAndLetters = getPuzzle(puzzles, letters);
+// spinWheel();
+// currGuess = fetchGuess(puzzleAndLetters);
+// checkGuess(puzzleAndLetters, currGuess);
+// console.log('ready function ending.');
+
+
+
 
 });
 
