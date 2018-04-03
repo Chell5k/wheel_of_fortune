@@ -8,7 +8,9 @@ var gameState = {
   "round_number": 0, //this includes each turn, even if the same player when more than once
   "current_player": 0, //this is the index into the player array. 0=>first player.
   "next_player": 1,
+  "puzzle_size": 0,
   "points": 0, //for the current round
+  "points_flag": null, //true if we are going to add points for this user's turn. Sometims they get to keep the turn, but without points
   "retry": null, // will be set to true or false after the current guess.
   "status": "initialized", /* running; win; reset; finished.*/
   updatePlayer: function (player, playerName) {
@@ -27,14 +29,23 @@ var gameState = {
     this.points = value;
   },
   updatePlayerScore: function(player, score) {
-    gameState[players][player][score] += score;
+    gameState["players"][player]["score"] += score;
   },
+  setPuzzleSize: function(size) {
+    this.puzzle_size = size;
+  },
+  updatePuzzleSize: function(value) {
+    this.puzzle_size += value* -1;
+  },
+getPuzzleSize: function () {
+    return this.puzzle_size;
+},
   getState: function() {
     return this.status;
   },
-updateAfterGuess: function (points, retry) {
-  this.points = points;
-  this.retry = retry;
+updateAfterGuess: function (points_flag, retry_flag) {
+  this.points_flag = points_flag;
+  this.retry_flag = retry_flag;
 },
   switchPlayers: function() {
     let temp = this.current_player;
@@ -49,7 +60,8 @@ $(document).ready(function() {
 console.log('ready function starting...');
 
 const puzzles = {
-"0": ["r","a","p","s","o","d","y"],
+//"0": ["r","h","a","p","s","o","d","y"],
+"0": ["r","a","y"],
 "1": ["v","a","r","i","e","t","y"],
 "2": ["b","u","z","z","a","r","d"]
 };
@@ -120,34 +132,74 @@ $('#startbutton').on('click', function() {
 console.log('showGamePage ending.');
 }
 /****************************************************************/
-function updateGamePage(points, message, position) {
+function updateGamePage(points_flag, retry_flag, message, position) {
   console.log('updateGamePage starting...');
-  //if boolean points is true, we will update three items on the gamae page page:
+  //if boolean points_flag is true, we will update three items on the gamae page page:
   //1. the current player's increased score,
   //2. the message
   //3. and we will reveal the correctly guessed letter.
   //if. points is NOT true, will will update just one item, i.e.,
   //1. the message.
-  let current_player;
-  let current_player_score;
-  let current_points;
-  if (points) {
+  let curr_player;
+  let curr_player_score;
+  let curr_points;
+  let newScore;
+  let letters_remaining = null;
+  if (points_flag) {
     //manipulate the player's score on the game page.
-    console.log(`We update player ${current_player} score here...`);
-    current_player = gameState.getCurrentPlayer;
-    current_player_score = gameState.getCurrentPlayer(current_player);
-    current_points = gameState.getPoints;
-    console.log(`we update player ${current_player} here by adding these points: `, current_points);
 
+    curr_player = gameState.getCurrentPlayer();
+    curr_player_score = gameState.getCurrentPlayer(curr_player);
+    curr_points = gameState.getPoints();
+    console.log(`updateGamePage: We update player ${curr_player} score here...`);
+    console.log(`updateGamePage: we update player ${curr_player} here by adding these points: `, curr_points);
+    gameState.updatePlayerScore(curr_player, curr_points);
     //reveal the hidden letter, using the "position" argument
-    console.log('Next, we reveal the previously hidden letter here.');
+    console.log('updateGamePage: Next, we reveal the previously hidden letter here.');
+
+
   }
  //here we update the message.
- console.log("We update the message here. It will be: ", message);
+ console.log("updateGamePage: We update the message here. It will be: ", message);
+ console.log('updateGamePage: debugger on');
+ //debugger;
 
-  console.log('points, message, position', points, message, position);
+
+ //here we will check for a win.
+ letters_remaining = gameState.getPuzzleSize();
+ if (letters_remaining === 0) {
+    alert("You have won!!");
+ // game status = game won;
+ // reset();
+ }
+ else if ( retry_flag) {
+  handleGuess();
+  //or, set flag for fetchGuess to run.
+ }
+ else {
+  gameState.switchPlayers();
+  //spinFlag =false;
+  console.log("updateGamePage: =====================================");
+  console.log("updateGamePage: about to spin wheel.");
+  spinWheel();
+  //or, set flag for spinWheel
+ }
+
+  console.log('points_flag, message, position', points_flag, message, position);
   console.log('UpdateGamePage ending.');
 } //end function
+
+function resetGame (){
+  console.log("resetGame in");
+
+  console.log("resetGame out");
+}
+
+function endGame() {
+  console.log("endGame in");
+  console.log("endGame out");
+}
+
 /****************************************************************/
 // initalizeGame goes the following:
 //* shows the game page
@@ -164,10 +216,13 @@ function updateGamePage(points, message, position) {
 // points. The point value will be passed back to caller.
 function spinWheel () {
   console.log('spinWheel starting...');
+  spinFlag = null;
+  let value = null;
 
- $('.game_wheel').on('click', function() {
+$('.game_wheel').one("click",function () {
+ //$('.game_wheel').on('click', function() {
   let a = 0;
-  let points = 0;
+  let value = 0;
   a  = Math.random();
     if (a < .3) {
       a = .25;
@@ -175,12 +230,13 @@ function spinWheel () {
     if (a > .6) {
       a = .6;
     }
-    points = Math.floor(a * 1000);
-    gameState.updatePoints(points);
-    console.log('This turn is worth '+points+' points.');
-    return points;
-
+    value = Math.floor(a * 1000);
+    gameState.updatePoints(value);
+    console.log('spinWheel: This turn is worth '+value+' points.');
   //Display the points on the board.
+  spinFlag = true;
+  clearSpinChecker = setInterval(handleGuess, 1000);
+  console.log('spinWheel: clearSpinChecker: ', clearSpinChecker);
 
   });
   console.log('spinWheel ending');
@@ -202,51 +258,108 @@ function spinWheel () {
 function runPuzzle() {
   console.log('runPuzzle starting...');
     getPuzzle();
-    fetchGuess();
-    checkGuess();
+    console.log("runPuzzle: =====================================");
+    console.log("runPuzzle: About to spin wheel");
+    spinWheel(); //sets spinflag and spinflag checker.
   console.log('runPuzzle ending');
 }
 
 function getPuzzle() {
   console.log('getPuzzle starting...');
-  let puzzleMax=puzzles.length;
+  let lettersToGuess=0;
+  //let puzzleMax=puzzles.length;
+  let puzzleMax = 3; // MMR remove this hardcode
   currentPuzzle = puzzles[puzzleCounter];
+  let consonants='bcdfghjklmnpqrstvwxyz';
+  let vowels= 'aeiou';
   console.log('Number of letters in currentPuzzle: ', currentPuzzle.length);
 
   for (let i = 0; i < currentPuzzle.length; i++) {
-   letters[currentPuzzle[i]] = "in_puzzle";
+    let j = currentPuzzle[i];
+    letters[j] = "in_puzzle";
+    if (vowels.indexOf(j) >= 0) {
+      letters[j]="vowel";
+    }
+    if (consonants.indexOf(j) >= 0){
+      console.log("Here is a consonant: ",j);
+      lettersToGuess++ ;
+      //console.log('getPuzzle. degguer in i loop.');
+      //debugger;
+    }
   }
+
+  //console.log('debugger in getPuzzle');
+  //debugger;
+
+  gameState.setPuzzleSize(lettersToGuess);
   if (puzzleCounter === puzzleMax) {puzzleCounter = 0;}
   console.log('getPuzzle ending.');
 }
-//From Peter: example of targetting one individual div by unique classname
+//From Peter: example of targetting one indiv idual div by unique classname
 // function getOneSquare() {
 //   console.log('hey from 4A!', $('.puzzle tiny_div1').innerText)
 // }
 // getOneSquare();
 
   /**************************************************************/
+
+  function handleGuess () {
+   console.log('handleGuess starting');
+   console.log('handleguess: spinFlag: ', spinFlag);
+   //check if the wheel was spun
+  if (spinFlag ) {
+    console.log('handleGuess: ok to proceed.')
+    console.log('handleGuess: clearSpinChecker',clearSpinChecker);
+    clearInterval(clearSpinChecker);
+
+  //  console.log('handleGuess: Clearing more intervalsl, to be safe');
+
+   // for (let i = (clearSpinChecker+4);  i >= 0; i--) {
+    //  clearInterval(i);
+    //}
+   // spinFlag = false; //reset spinflag
+    fetchGuess();
+    checkGuess();
+    //checkForWin();
+    }
+  console.log('handleGuess: debugger on');
+  debugger;
+  console.log('handleGuess out.');
+}
+
+
   function fetchGuess () {
     console.log("fetchGuess: in...");
     //retrieve the guess and stuff it into the guess array...
     //for testing purposes, set it to a fixed value.
-    currentGuess = ["r"];
+    //let tempGuess = ["r", "r", "a", "b", "b","y"];
+    let tempGuess = ["r", "a", "y"];
+    currentGuess = tempGuess[tempCounter];
+    console.log("fetchGuess: out.");
+    tempCounter++;
+    console.log("debugger in fetchguess.");
+    console.log("fetchGuess: Array tempGuess:",tempGuess);
+    console.log("fetchGuess: tempCounter: ", tempCounter);
+    console.log("fetchGuess: Array currentGuess: ", currentGuess);
     console.log("fetchGuess: out.");
   }
   /**************************************************************/
-  function checkGuess(puzzleAndLetters, currGuess) {
+  function checkGuess() {
     console.log('checkGuess starting...');
 
     //let puzzle = puzzleAndLetters["puzzle"];
     //let letters = puzzleAndLetters["letters"];
     let guess = currentGuess[0];
-    let position = puzzle.indexOf(guess); // -1 => not in the puzzle. >= 0 means in the puzzle.
+    let position = currentPuzzle.indexOf(guess); // -1 => not in the puzzle. >= 0 means in the puzzle.
     let old_status = letters[guess]; // active, bad_guess, good_guess, in_puzzle, vowel.
     let new_status = old_status;
-    let points;
-    let retry; //boolean. Sometime the current person gets to go again.
-
-    debugger;
+    let points_flag;
+    let retry_flag; //boolean. Sometime the current person gets to go again.
+    console.log('curentGuess: guess', guess);
+    console.log('curentGuess: position ', position);
+    console.log('curentGuess: old_status ', old_status);
+    console.log ('Debugger in checkGuess');
+    //debugger;
 
     // About the guess:
     // if it not in the puzzle and is a new guess (old_status is active, status becomes bad_guess.
@@ -258,47 +371,54 @@ function getPuzzle() {
     if (position === -1) {
           new_status = 'bad_guess';
           letters[guess] = new_status;
-          message = "Sorry - not in the puzzle";
-          points = false;
-          retry = false;
+          points_flag = false;
+          if (old_status === 'active') {
+            message = "Sorry - not in the puzzle";
+            retry_flag = false;
+          }
+          else {
+            message = "This is a repeat guess --still not in the puzzle.";
+            retry_flag = true;
+          }
     }
-
+    //console.log('checkGuess: write messages before to updte gameState with puzzle size.');
     if (position >= 0) {
       switch (old_status) {
         case "in_puzzle":
           message = "Good guess!"
           new_status = "good_guess";
           letters[guess] = new_status;
-          points = true;
-          retry = false;
+          points_flag = true;
+          retry_flag = false;
+          gameState.updatePuzzleSize(1); //number of letters remaining by 1.
         break;
         case 'bad_guess':
           message = "This is a repeat -- and it is not in the puzzle.";
-          points = false;
-          retry = true;
+          points_flag = false;
+          retry_flag = true;
         break;
-        case 'good guess':
+        case 'good_guess':
           message = "This letter was already successfully guessed.";
-          points = false;
-          retry = true;
+          points_flag = false;
+          retry_flag = true;
          break;
         case 'vowel':
           message = "No vowels for now.";
-          points = false;
-          retry = true;
+          points_flag = false;
+          retry_flag = true;
         break;
         default:
           message == "Well this is odd.";
-          points = false;
-          retry = false;
+          points_flag = false;
+          retry_flag = false;
       }
     }
 
-    gameState.updateAfterGuess(points, retry);
-    updateGamePage(message, points, position);
-    console.log(message);
-    console.log('puzzleAndLetters, currGuess, old_status, new_status, points, retry',
-                 puzzleAndLetters, currGuess, old_status, new_status, points, retry);
+    gameState.updateAfterGuess(points_flag, retry_flag);
+    updateGamePage(points_flag, retry_flag, message, position);
+    console.log('checkGuess: ',message);
+    console.log('puzzleAndLetters, currentGuess, old_status, new_status, points_flag, retry_flag',
+                 puzzleAndLetters, currentGuess, old_status, new_status, points_flag, retry_flag);
     console.log('checkGuess finished.');
   }
 
@@ -331,7 +451,7 @@ readyPlayer1();
 readyPlayer2();
 console.log('startGame: gotPlayer1, gotPlayer2' , gotPlayer1, gotPlayer2);
 showGamePage();
-clearVal = setInterval(checkForNames, 1000);
+clearVal = setInterval(checkForNames, 2000);
 console.log('startGame: out. clearVal: ', clearVal);
 return 1;
 }
@@ -399,7 +519,7 @@ $('#startbutton').on('click', function() {
 //----------------------------------------------------------------//
 //STARTPROGRAM: Program starts here...
 //----------------------------------------------------------------//
-
+let tempCounter = 0;
 let currentPuzzle;
 let puzzleCounter = 0;
 let puzzleAndLetters = {};
@@ -412,8 +532,9 @@ let clearPuzzleCheck = null;
 
 let currentGuess = [];
 
-// let currGuess;
-// let gotNames = false;
+let spinFlag = null;
+let clearSpinChecker = null;
+
 // let clearVal = null;
 
 //------------------------------------------------------------------//
