@@ -28,8 +28,11 @@ var gameState = {
   updatePoints: function(value) {
     this.points = value;
   },
-  updatePlayerScore: function(player, score) {
-    gameState["players"][player]["score"] += score;
+  getCurrentPlayerScore: function(player) {
+    return gameState["players"][player]["score"];
+  },
+  updatePlayerScore: function(player, value) {
+    gameState["players"][player]["score"] += value;
   },
   setPuzzleSize: function(size) {
     this.puzzle_size = size;
@@ -48,9 +51,10 @@ updateAfterGuess: function (points_flag, retry_flag) {
   this.retry_flag = retry_flag;
 },
   switchPlayers: function() {
+    debugger;
     let temp = this.current_player;
     this.current_player = this.next_player;
-    this.next_player = this.current_player;
+    this.next_player = temp;
     return this.current_player;
   },
 };
@@ -154,9 +158,10 @@ function updateGamePage(points_flag, retry_flag, message, position) {
 
   if (points_flag) {
     //manipulate the player's score on the game page.
-
+    console.log("updateGamePage: debugger on");
+    debugger;
     //curr_player = gameState.getCurrentPlayer();
-    curr_player_score = gameState.getCurrentPlayer(curr_player);
+    curr_player_score = gameState.getCurrentPlayerScore(curr_player);
     curr_points = gameState.getPoints();
     //curr_player_name = gameState.getPlayerName(curr_player);
     console.log("updateGamePage: curr_player_score: ",curr_player_score);
@@ -167,7 +172,7 @@ function updateGamePage(points_flag, retry_flag, message, position) {
     tempnum = curr_player+1;
     $("#player_"+tempnum+"_score").text(curr_points+curr_player_score);
 
-    //debugger;
+
     //reveal the hidden letter, using the "position" argument
     console.log('updateGamePage: Next, we reveal the previously hidden letter here.');
 
@@ -175,7 +180,7 @@ function updateGamePage(points_flag, retry_flag, message, position) {
   }
  //here we update the message.
  console.log("updateGamePage: We update the message here. It will be: ", message);
- $('div.game_update h2').text(message+", "+curr_player_name+"!");
+ $('div.game_update h3').text(message+", "+curr_player_name+"!");
  console.log('updateGamePage: debugger on');
  //debugger;
 
@@ -183,7 +188,25 @@ function updateGamePage(points_flag, retry_flag, message, position) {
  //here we will check for a win.
  letters_remaining = gameState.getPuzzleSize();
  if (letters_remaining === 0) {
-    alert("You have won!!");
+    let score0 = gameState["players"][0]["score"];
+    let score1 = gameState["players"][1]["score"];
+
+    let name0 = gameState["players"][0]["name"];
+    let name1 = gameState["players"][1]["name"];
+
+    if (score0 > score1 ) {
+      winner = name0;
+    }
+    else if (score0 < score1) {
+      winner = name1;
+    }
+    else {
+      winner = name0+' and '+name1;
+    }
+
+    $('div.game_update h3').text("The winner is: "+winner+"!").css("color","red");
+
+
  // game status = game won;
  // reset();
  }
@@ -233,21 +256,25 @@ function spinWheel () {
   console.log('spinWheel starting...');
   spinFlag = null;
   let value = null;
+  let i = gameState.getCurrentPlayer();
+  let spinner = gameState.getPlayerName(i);
+  $('div.game_update h3').text("Press the button to spin the wheel, "+spinner+"!");
 
 $('.game_wheel').one("click",function () {
  //$('.game_wheel').on('click', function() {
   let a = 0;
   let value = 0;
   a  = Math.random();
-    if (a < .3) {
-      a = .25;
+    if (a < .1) {
+      a = .1;
     }
-    if (a > .6) {
-      a = .6;
-    }
+    // if (a > .6) {
+    //   a = .6;
+    // }
     value = Math.floor(a * 1000);
     gameState.updatePoints(value);
     console.log('spinWheel: This turn is worth '+value+' points.');
+    $('.points_box').text(value);
   //Display the points on the board.
   spinFlag = true;
   clearSpinChecker = setInterval(handleGuess, 1000);
@@ -462,8 +489,8 @@ $puzzle_divs  = $('.puzzle_wrapper > div');
     gameState.updateAfterGuess(points_flag, retry_flag);
     updateGamePage(points_flag, retry_flag, message, position);
     console.log('checkGuess: ',message);
-    console.log('puzzleAndLetters, currentGuess, old_status, new_status, points_flag, retry_flag',
-                 puzzleAndLetters, currentGuess, old_status, new_status, points_flag, retry_flag);
+    console.log('currentGuess, old_status, new_status, points_flag, retry_flag',
+                 currentGuess, old_status, new_status, points_flag, retry_flag);
     console.log('checkGuess finished.');
   }
 

@@ -134,7 +134,8 @@ td, th {
   /*vertical-align: middle;*/
   margin: 5px auto;
   padding: 2px;
-  background: lightgreen;
+  background: grey;
+  font-size: 20px;
 
 }
 
@@ -197,9 +198,10 @@ div.game_update * {
   /*border: 2px solid grey;*/
   /*background: lightgrey;*/
   position: relative;
+  color: white;
 }
 
-table.reports {
+table.report_points {
   color: white;
 }
 /********************************************************************/
