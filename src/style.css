@@ -118,15 +118,29 @@ button {
   background: lightblue;
 }
 
-.game_players * {
+.game_players  {
   position: relative;
   color: white;
   top: 10px;
-  display: block;
+  /*display: block;*/
   padding: 5px;
   margin: 10px 5px;
+  font-size: 30px;
 }
 
+td, th {
+  border: 3px solid lightgrey;
+  /*border-collapse: collapse;*/
+  /*vertical-align: middle;*/
+  margin: 5px auto;
+  padding: 2px;
+  background: lightgreen;
+
+}
+
+td {
+  height: 50px;
+}
 
 div.game_wheel_wrapper {
   position: relative;
@@ -137,13 +151,15 @@ div.game_wheel_wrapper {
   /*border: 2px solid black;*/
   /*top: 10px;*/
   padding: 5px;
-  margin: 10px auto;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 div.game_wheel_wrapper button {
  margin: 0 auto;
  display: block;
- margin: 0 auto;
 }
 
 div.game_update {
@@ -151,7 +167,10 @@ div.game_update {
  /*top: 300px;*/
   width: 550px;
   height: 50px;
-  margin: 30px auto;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
   /*border: 2px solid grey;*/
   background: lightgrey;
   position: relative;
@@ -160,15 +179,38 @@ div.game_update {
 div.game_update * {
   /*Intended to affect the headers*/
   position: relative;
+  font-size: 30px;
   top: 8px;
   color: white;
   text-align: center;
-  margin: 10px;
+  margin: 10px auto;
  /* border: 2px solid black;*/
  /*position: relative;*/
 }
 
+.report_points {
+  /*background: yellow;*/
+  width: 550px;
+  height: 75px;
+  margin-left: auto;
+  margin-right: auto;
+  /*border: 2px solid grey;*/
+  /*background: lightgrey;*/
+  position: relative;
+}
+
+table.reports {
+  color: white;
+}
 /********************************************************************/
+.puzzle_wrapper {
+  width: 550px;
+  height: 40px;
+  margin: 30px auto;
+  /*border: 2px solid grey;*/
+  background: lightgrey;
+  position: relative;
+}
 
  div.puzzle {
   /*top: 300px;*/
@@ -176,11 +218,30 @@ div.game_update * {
   position: relative;
   height: 30px;
   display: inline-block;
-  text-align: center;
+  /*text-align: center;*/
   width: 40px;
-  margin: 30px auto;
+  margin: 0 auto;
   background-color: white;
 }
 
 
+div.guess_letter {
+ /*top: 300px;*/
+  width: 550px;
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  /*border: 2px solid grey;*/
+  background: lightgrey;
+  position: relative;
+}
+
+div.guess_letter  input {
+  position: relative;
+  color: grey;
+  top: 10px;
+  display: block;
+  padding: 5px;
+  margin: 10px 5px;
+}
 

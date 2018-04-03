@@ -43,26 +43,62 @@
 
 <div class="game_page">
   <div class="game_players">
-    <h2 id="player_1">Player 1:</h2>
-    <h2 id="player_2">Player 2:</h2>
-  </div>
+
+    <!-- <h2 id="player_1">Player 1:</h2> -->
+    <!-- <h2 id="player_2">Player 2:</h2> -->
+    <table id="scoreboard">
+      <tr>
+        <th>Player</th>
+        <th>Score</th>
+      </tr>
+      <tr>
+        <td id="player_1">Player_1</td>
+        <td id="player_1_score">0</td>
+      </tr>
+      <tr>
+        <td id="player_2">Player_2</td>
+        <td id="player_2_score">0</td>
+      </tr>
+    </table>
+   </div>
+
 
   <div class="game_wheel_wrapper">
     <button class="game_wheel">press for points</button>
-  </div>
+</div>
+
+
+  <div class="report_points">
+      <table id="points_box">
+      <tr>
+        <th>Points</th>
+      </tr>
+      <tr>
+        <td class="points_box">0</td>
+      </tr>
+      </table>
+    </div>
+
 
   <div class="game_update">
     <h2>Ready to rumble.....!</h2>
   </div>
 
-  <div class="puzzle tiny_div0">P</div>
-  <div class="puzzle tiny_div1">A</div>
-  <div class="puzzle tiny_div2">R</div>
-  <div class="puzzle tiny_div3">A</div>
-  <div class="puzzle tiny_div4">D</div>
-  <div class="puzzle tiny_div5">I</div>
-  <div class="puzzle tiny_div6">G</div>
-  <div class="puzzle tiny_div7">M</div>
+
+  <div class="puzzle_wrapper">
+    <div class="puzzle tiny_div0">P</div>
+    <div class="puzzle tiny_div1">A</div>
+    <div class="puzzle tiny_div2">R</div>
+    <div class="puzzle tiny_div3">A</div>
+    <div class="puzzle tiny_div4">D</div>
+    <div class="puzzle tiny_div5">I</div>
+    <div class="puzzle tiny_div6">G</div>
+    <!-- <div class="puzzle tiny_div7">M</div> -->
+  </div>
+
+  <div class="guess_letter">
+    <input type="text" id="guess">
+  </div>
 
 </div>
 
