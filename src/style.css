@@ -1,11 +1,10 @@
 body {
-  font-family: arial;
   /*background: black;*/
+  font-family: "Comic Sans MS", "Chalkboard", "ChalkboardSE-Regular", sans-serif;
+  /*font-family: sans-serif;*/
 }
 
 .landing_page {
-  font-family: "Comic Sans MS", "Chalkboard", "ChalkboardSE-Regular", sans-serif;
-  /*font: "Marker Felt", "Zapfino", cursive;*/
   width: 45%;
   min-height: 70vh;
   margin: 5vh auto;
@@ -99,8 +98,6 @@ button {
 /********************************************************************************/
 
 .game_page {
-  font-family: "Comic Sans MS", cursive, sans-serif;
-  /*top:80px;*/
   width: 45%;
   min-height: 70vh;
   margin: 30px auto;
