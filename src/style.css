@@ -4,246 +4,343 @@ body {
 }
 
 .landing_page {
-  /*top:80px;*/
-  width: 600px;
-  height: 600px;
-  margin: 30px auto;
-  border: 2px solid white;
-  border: 5px solid grey;
-  position: relative;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  /*font: "Marker Felt", "Zapfino", cursive;*/
+  width: 45%;
+  min-height: 70vh;
+  margin: 5vh auto;
+  border: 3px solid lightgrey;
+  /*position: relative;*/
   background: white;
+  padding-bottom: 3vh;
+  box-shadow: 3px 3px 4px lightgrey;
 }
 
 .landing_banner {
-  /*top: 50px;*/
-  width: 550px;
-  height: 110px;
-  margin: 30px auto;
+  width: 90%;
+  margin: 3vh auto;
+  text-shadow: 3px 3px gray;
+  text-align:center;
+  color: #fff;
   /*border: 2px solid black;*/
+  padding-top: 1vh;
+  padding-bottom: 1vh;
   background: lightblue;
   position: relative;
-}
-
-.landing_banner * {
-  /*Intended to affect the headers*/
-  position: relative;
-  top: 8px;
-  color: white;
-  text-align: center;
-  margin: 10px;
-  /*border: 2px solid black;*/
- /*position: relative;*/
+  box-shadow: 3px 3px 4px lightgrey;
 }
 
 img.lp_wheel {
 
-  top: 30px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 1vh auto;
   width: 15%;
   display: block;
-  /*border: 2px solid black;*/
 }
 
 div.landing_notification {
-
- /*top: 300px;*/
-  width: 550px;
-  height: 50px;
-  margin: 30px auto;
-  /*border: 2px solid grey;*/
-  background: lightgrey;
-  position: relative;
-
-}
-div.landing_notification * {
-  /*Intended to affect the headers*/
-  position: relative;
-  top: 8px;
-  color: white;
-  text-align: center;
-  margin: 10px;
- /* border: 2px solid black;*/
- /*position: relative;*/
-}
-div.landing_enter_names {
-
- /*top: 300px;*/
-  width: 550px;
-  height: 100px;
+  width: 90%;
+  padding-top: .5vh;
+  padding-bottom: 1vh;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
   margin-left: auto;
   margin-right: auto;
   /*border: 2px solid grey;*/
   background: lightgrey;
-  position: relative;
+  text-align: center;
+  color: #fff;
+  text-shadow: 3px 3px gray;
+  box-shadow: 3px 3px 4px lightgrey;
 
 }
 
-div.landing_enter_names input {
+.landing_enter_names {
+
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  background: lightgrey;
   position: relative;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  padding-left: 3%;
+  box-shadow: 3px 3px 4px lightgrey;
+
+}
+
+.landing_enter_names input {
   color: grey;
-  top: 10px;
+  font-size: 1.5em;
   display: block;
-  padding: 5px;
-  margin: 10px 5px;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  padding-left: 5%;
+  padding-right: auto;
+  margin: 2vh 2%;
+  max-width: 80%;
+  box-shadow: 3px 3px 4px lightgrey;
 }
 
-div.landing_start_button {
+.landing_start_button {
   position: relative;
-  width: 550px;
-  height: 40px;
+  width: 90%;
   color: grey;
   background: lightgrey;
-  /*border: 2px solid black;*/
-  /*top: 10px;*/
-  padding: 5px;
+  padding: 1vh 2%;
   margin: 10px auto;
+  box-shadow: 3px 3px 4px lightgrey;
 }
 
 button {
- margin: 0 auto;
  display: block;
- margin: 0 auto;
+ margin: 1vh auto;
 }
 
 /********************************************************************************/
 
 .game_page {
+  font-family: "Comic Sans MS", cursive, sans-serif;
   /*top:80px;*/
-  width: 600px;
-  height: 600px;
+  width: 45%;
+  min-height: 70vh;
   margin: 30px auto;
-  border: 5px solid grey;
+  border: 3apx solid grey;
   position: relative;
-  background: lightblue;
+  /*background: lightblue;*/
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  box-shadow: 3px 3px 4px grey;
+  animation: back_animate 25s infinite ease-in-out alternate;
 }
 
-.game_players  {
-  position: relative;
-  color: white;
-  top: 10px;
-  /*display: block;*/
-  padding: 5px;
-  margin: 10px 5px;
-  font-size: 30px;
+/*@keyframes back_animate
+{
+  0%  {background-color: #0b2161;}
+  25% {background-color: #be81f7;}
+  50% {background-color: #424242;}
+  75% {background-color: #298A08;}
+  100%{background-color: #0b2161;}
+}*/
+@keyframes back_animate
+{
+  0%  {background-color: #c4c3d0;}
+  20% {background-color: #fff0f5;}
+  40% {background-color: #a1caf1;}
+  60% {background-color: #fbceb1;}
+  80% {background-color: #b39eb5;}
+  100%{background-color: #93c572;}
 }
-
-td, th {
-  border: 3px solid lightgrey;
-  /*border-collapse: collapse;*/
-  /*vertical-align: middle;*/
-  margin: 5px auto;
-  padding: 2px;
-  background: grey;
-  font-size: 20px;
-
-}
-
-td {
-  height: 50px;
-}
-
-div.game_wheel_wrapper {
-  position: relative;
-  width: 550px;
-  height: 40px;
-  color: grey;
-  background: lightgrey;
+.game_banner {
+  width: 95%;
+  margin: 3vh auto;
+  text-align:center;
   /*border: 2px solid black;*/
-  /*top: 10px;*/
-  padding: 5px;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  margin-left: auto;
-  margin-right: auto;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  background: lightgray;
+  position: relative;
+  text-shadow: 3px 3px gray;
+  box-shadow: 3px 3px 4px grey;
+}
+
+.game_banner h2 {
+  color: #fff;
+
+}
+
+.scoreboard,
+.handle_points_and_guess,
+.player_updates {
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+  margin: 0 auto;
+  margin-bottom: 3vh;
+  height: 15vh;
+  justify-content: space-between;
+  align-items: center;
+  /*border: 1px solid black;*/
+}
+
+.scoreboard .player {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  height: 100%;
+  border: 2px solid lightgray;
+  background-color: grey;
+  box-shadow: 3px 3px 4px grey;
+
+}
+.current_player {
+  background-color: #3cb371;
+}
+
+.player .player_name {
+  width: 100%;
+  height: 30%;
+  font-size: 20px;
+  /*color: #fff;*/
+  /*background-color: lightgrey;*/
+  border-bottom: 2px solid lightgrey;
+  text-align: center;
+}
+.player .player_score {
+  width: 100%;
+  height: 65%;
+  /* Set display to flex so we can easily center the score.*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.puzzle_container {
+  display: flex;
+  justify-content: space-around;
+  background-color: lightgray;
+  align-items: center;
+  width:46%;
+  height: 100%;
+  box-shadow: 3px 3px 4px grey;
+}
+
+.player_updates {
+  height: 10vh;
+}
+
+.player_updates [class^=player_msg] {
+  height: 100%;
+  width: 49%;
+  /* TODO: pull this out to apply to multiple update areas? */
+  background: lightgrey;
+  text-align: center;
+  color: #fff;
+  text-shadow: 3px 3px gray;
+  box-shadow: 3px 3px 4px grey;
+  /*border: 1px solid red;*/
+}
+
+.game_wheel_wrapper {
+  width: 25%;
+  height: 100%;
+  color: grey;
+  font-size: 1.2em;
+  /*background: lightgrey;*/
+  /*box-shadow: 3px 3px 4px grey;*/
+
+
 }
 
 div.game_wheel_wrapper button {
- margin: 0 auto;
- display: block;
+  /*font-size: .6em;*/
+  width: 100%;
+  height: 100%;
+  margin: 0 0;
+  border-radius: 16px;
+  box-shadow: 3px 3px 4px grey;
+  background-image: linear-gradient(to bottom right, #b8b8b8, #ebebeb);
 }
 
-div.game_update {
+.game_update {
 
- /*top: 300px;*/
-  width: 550px;
-  height: 50px;
-  margin-top: 40px;
+  width: 95%;
+  margin-top: 4vh;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 20px;
-  /*border: 2px solid grey;*/
+  margin-bottom: 4vh;
+  /* TODO: pull this out to apply to multiple update areas? */
   background: lightgrey;
-  position: relative;
-
-}
-div.game_update * {
-  /*Intended to affect the headers*/
-  position: relative;
-  font-size: 30px;
-  top: 8px;
-  color: white;
   text-align: center;
-  margin: 10px auto;
- /* border: 2px solid black;*/
- /*position: relative;*/
+  color: #fff;
+  text-shadow: 3px 3px gray;
+  box-shadow: 3px 3px 4px grey;
+}
+
+.game_update h3,
+.player_updates [class^=player_msg]
+ {
+  font-size: 2em;
+  padding: .1em .25em;
+  margin-bottom: 2px;
+  /*margin-bottom: .5em;*/
 }
 
 .report_points {
-  /*background: yellow;*/
-  width: 550px;
-  height: 75px;
-  margin-left: auto;
-  margin-right: auto;
-  /*border: 2px solid grey;*/
-  /*background: lightgrey;*/
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center ;
+  width:25%;
+  height: 100%;
+/*  margin-left: auto;
+  margin-right: auto;*/
+  border: 2px solid yellow;
+  background: grey;
+  border: 1px solid lightgray;
   color: white;
+  box-shadow: 3px 3px 4px grey;
 }
 
-table.report_points {
-  color: white;
+.report_points .points_header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30%;
+  width: 100%;
+  border-bottom: 2px solid lightgray;
+
 }
-/********************************************************************/
-.puzzle_wrapper {
-  width: 550px;
+
+.report_points .points_box {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70%;
+  width: 100%;
+}
+
+
+
+ .puzzle {
+  padding-top: 8px;
   height: 40px;
-  margin: 30px auto;
-  /*border: 2px solid grey;*/
-  background: lightgrey;
-  position: relative;
-}
-
- div.puzzle {
-  /*top: 300px;*/
-  /*border: 5px solid blue;*/
-  position: relative;
-  height: 30px;
-  display: inline-block;
-  /*text-align: center;*/
   width: 40px;
-  margin: 0 auto;
+  font-size: 1.4em;
   background-color: white;
+  text-align: center;
+  text-transform: uppercase;
+  box-shadow: 3px 3px 2px grey;
 }
 
 
-div.guess_letter {
- /*top: 300px;*/
-  width: 550px;
-  height: 50px;
-  margin-left: auto;
-  margin-right: auto;
-  /*border: 2px solid grey;*/
+.guess_letter {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
   background: lightgrey;
   position: relative;
+  box-shadow: 3px 3px 4px grey;
+  background-image: linear-gradient(to bottom right, #b8b8b8, #ebebeb);
 }
 
-div.guess_letter  input {
-  position: relative;
+.guess_letter  input {
+/*  position: relative;*/
   color: grey;
-  top: 10px;
-  display: block;
-  padding: 5px;
-  margin: 10px 5px;
+ /* top: 10px;*/
+ /* display: block;*/
+  padding: .6em;
+  margin: auto auto;
+  width:80%;
+  border: none;
+  box-shadow: 2px 2px 3px grey;
+  font-size: 1.2em;
+  color: grey;
+
+}
+.guess_letter input::placeholder {
+  color: grey;
 }
 

@@ -17,7 +17,7 @@
 
 <body>
 
- <div class="landing_page">
+<div class="landing_page">
   <div class="landing_banner">
     <h2>WELCOME TO</h2>
     <h1>WHEEL OF FORTUNE!</h1>
@@ -34,73 +34,99 @@
     <input type="text" id="name2" >
   </div>
   <div class="landing_start_button">
-    <button id="startbutton">press to start game</button>
+    <button id="startbutton" disabled>Start Game</button>
   </div>
 </div>
-
-<!--  -->
-<!--  -->
 
 <div class="game_page">
-  <div class="game_players">
 
-    <!-- <h2 id="player_1">Player 1:</h2> -->
-    <!-- <h2 id="player_2">Player 2:</h2> -->
-    <table id="scoreboard">
-      <tr>
-        <th>Player</th>
-        <th>Score</th>
-      </tr>
-      <tr>
-        <td id="player_1">Player_1</td>
-        <td id="player_1_score">0</td>
-      </tr>
-      <tr>
-        <td id="player_2">Player_2</td>
-        <td id="player_2_score">0</td>
-      </tr>
-    </table>
-   </div>
+  <div class="game_banner">
+    <h2>WHEEL OF FORTUNE SCOREBOARD</h2>
+  </div>
 
+  <div class="scoreboard">
 
-  <div class="game_wheel_wrapper">
-    <button class="game_wheel">press for points</button>
-</div>
-
-
-  <div class="report_points">
-      <table id="points_table">
-      <tr>
-        <th>Points</th>
-      </tr>
-      <tr>
-        <td class="points_box">0</td>
-      </tr>
-      </table>
+    <div class="player">
+      <div id="player_1" class="player_name">
+      </div>
+      <div id="player_1_score" class="player_score">
+      </div>
     </div>
 
+<!--     <div class="puzzle_container">
+        <div class="puzzle tiny_div0">P</div>
+        <div class="puzzle tiny_div1">A</div>
+        <div class="puzzle tiny_div2">R</div>
+        <div class="puzzle tiny_div3">A</div>
+        <div class="puzzle tiny_div4">D</div>
+        <div class="puzzle tiny_div5">I</div>
+        <div class="puzzle tiny_div6">G</div>
+  </div> -->
+
+    <div class="report_points">
+      <div class="points_header">
+        POINTS
+      </div>
+      <div class="points_box">
+        0
+      </div>
+    </div>
+
+    <div class="player">
+      <div id="player_2" class="player_name">
+      </div>
+      <div id="player_2_score" class="player_score">
+      </div>
+    </div>
+
+  </div> <!-- End: div.scoreboard -->
+
+  <div class="player_updates">
+    <div class="player_msg_1"><h3></h3></div>
+    <div class="player_msg_2"><h3></h3></div>
+  </div>
 
   <div class="game_update">
-    <h3>Ready to rumble.....!</h3>
+    <h3 class="status">Ready to rumble.....!</h3>
+    <h3 class="action"></h3>
   </div>
 
+  <div class="handle_points_and_guess">
+    <div class="game_wheel_wrapper">
+        <button class="game_wheel">Press for points</button>
+    </div>
 
-  <div class="puzzle_wrapper">
-    <div class="puzzle tiny_div0">P</div>
-    <div class="puzzle tiny_div1">A</div>
-    <div class="puzzle tiny_div2">R</div>
-    <div class="puzzle tiny_div3">A</div>
-    <div class="puzzle tiny_div4">D</div>
-    <div class="puzzle tiny_div5">I</div>
-    <div class="puzzle tiny_div6">G</div>
-    <!-- <div class="puzzle tiny_div7">M</div> -->
+<!--     <div class="report_points">
+      <div class="points_header">
+        POINTS
+      </div>
+      <div class="points_box">
+        0
+      </div>
+    </div> -->
+
+    <div class="puzzle_container">
+        <div class="puzzle tiny_div0">P</div>
+        <div class="puzzle tiny_div1">A</div>
+        <div class="puzzle tiny_div2">R</div>
+        <div class="puzzle tiny_div3">A</div>
+        <div class="puzzle tiny_div4">D</div>
+        <div class="puzzle tiny_div5">I</div>
+        <div class="puzzle tiny_div6">G</div>
+    </div>
+
+    <div class="guess_letter">
+        <input type="text" id="guess" placeholder="Enter guess">
+    </div>
+  </div> <!-- div.handle_points_and_guess -->
+
+<!--   <div class="game_update">
+    <h3 class="status">Ready to rumble.....!</h3>
+    <h3 class="action"></h3>
   </div>
+ -->
 
-  <div class="guess_letter">
-    <input type="text" id="guess" placeholder="Enter your guess">
-  </div>
-
-</div>
+</div> <!-- End div.game_page -->
 
 </body>
 </html
