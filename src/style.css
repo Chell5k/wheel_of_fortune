@@ -4,6 +4,7 @@ body {
   /*font-family: sans-serif;*/
 }
 
+
 .landing_page {
   width: 45%;
   min-height: 70vh;
@@ -14,6 +15,7 @@ body {
   padding-bottom: 3vh;
   box-shadow: 3px 3px 4px lightgrey;
 }
+
 
 .landing_banner {
   width: 90%;
@@ -341,3 +343,9 @@ div.game_wheel_wrapper button {
   color: grey;
 }
 
+@media screen and (max-width: 760px) {
+  .landing_page,
+  .game_page {
+    width: 95%;
+  }
+}
